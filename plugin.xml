@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.outsystems.plugins.filetransfer" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>OSFileTransfer</name>
+    <description>OutSystems' cordova file transfer plugin for mobile apps.</description>
+    <author>OutSystems Inc</author>
+
+    <js-module name="FileTransfer" src="packages/cordova-plugin/dist/plugin.js">
+        <clobbers target="cordova.plugins.FileTransfer" />
+    </js-module>
+
+    <platform name="android">
+        
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="OSFileTransferPlugin">
+                <param name="android-package" value="com.outsystems.plugins.filetransfer.OSFileTransferPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+            <preference name="GradlePluginKotlinEnabled" value="true" />
+            <preference name="GradlePluginKotlinCodeStyle" value="official" />
+            <preference name="AndroidXEnabled" value="true"/>
+        </config-file>
+
+        <source-file src="packages/cordova-plugin/android/OSFileTransferErrors.kt" target-dir="app/src/main/kotlin/com/outsystems/plugins/filetransfer" />
+        <source-file src="packages/cordova-plugin/android/OSFileTransferPlugin.kt" target-dir="app/src/main/kotlin/com/outsystems/plugins/filetransfer" />
+        <source-file src="packages/cordova-plugin/android/OSFileTransferModels.kt" target-dir="app/src/main/kotlin/com/outsystems/plugins/filetransfer" />
+
+        <framework src="packages/cordova-plugin/android/build.gradle" custom="true" type="gradleReference" />
+
+    </platform>
+
+    <platform name="ios">
+
+        <config-file parent="/*" target="config.xml">
+            <feature name="OSFileTransferPlugin">
+                <param name="ios-package" value="OSFileTransferPlugin" />
+            </feature>
+            <preference name="SwiftVersion" value="5.1" />
+        </config-file>
+
+        <source-file src="packages/cordova-plugin/ios/OSFileTransferError.swift" />
+        <source-file src="packages/cordova-plugin/ios/OSFileTransferPlugin.swift" />
+
+        <!-- TODO: Uncomment this when the framework is available in Cocoapods -->
+        <!-- <podspec>
+            <config>
+                <source url="https://cdn.cocoapods.org/"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="IONFileTransferLib" spec="1.0.0" />
+            </pods>
+        </podspec> -->
+        <framework src="packages/cordova-plugin/ios/IONFileTransferLib.xcframework" custom="true" embed="true" />
+    
+    </platform>
+</plugin>
