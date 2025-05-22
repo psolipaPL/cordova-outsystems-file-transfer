@@ -39,7 +39,7 @@ class OSFileTransferWrapper {
         
         const downloadError = (err: FileTransferError) => {
             if (scope.downloadCallback && scope.downloadCallback.downloadError) {
-                scope.downloadCallback.downloadError(err);
+                scope.downloadCallback.downloadError(this.convertError(err));
             }
             this.handleTransferFinished();
         };
@@ -116,7 +116,7 @@ class OSFileTransferWrapper {
         
         const uploadError = (err: FileTransferError) => {
             if (scope.uploadCallback && scope.uploadCallback.uploadError) {
-                scope.uploadCallback.uploadError(err);
+                scope.uploadCallback.uploadError(this.convertError(err));
             }
             this.handleTransferFinished();
         };
@@ -162,6 +162,19 @@ class OSFileTransferWrapper {
                 Capacitor.Plugins.FileTransfer.removeAllListeners();
             }
         }
+    }
+
+    /**
+     * Converts the error with the correct properties that OutSystems expects in FileTransferError structure.
+     * This is done here to have the same fields as the old cordova plugin - thus ensuring backwards compatibility.
+     * @param error the error coming from the plugin
+     * @returns The error with the properties that OutSystems expects
+     */
+    private convertError(error: FileTransferError): FileTransferError & { http_status?: number } {
+        return {
+            ...error,
+            http_status: error.httpStatus,
+        };
     }
     
     private isPWA(): boolean {

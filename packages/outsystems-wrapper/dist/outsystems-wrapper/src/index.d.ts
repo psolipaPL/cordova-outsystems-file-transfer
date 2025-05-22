@@ -7,6 +7,13 @@ declare class OSFileTransferWrapper {
     private handleBasicFileInfo;
     uploadFile(options: any, scope: any): void;
     private handleTransferFinished;
+    /**
+     * Converts the error with the correct properties that OutSystems expects in FileTransferError structure.
+     * This is done here to have the same fields as the old cordova plugin - thus ensuring backwards compatibility.
+     * @param error the error coming from the plugin
+     * @returns The error with the properties that OutSystems expects
+     */
+    private convertError;
     private isPWA;
     private isCapacitorPluginDefined;
     /**
