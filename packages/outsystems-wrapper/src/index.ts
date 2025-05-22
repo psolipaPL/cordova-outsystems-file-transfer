@@ -170,11 +170,20 @@ class OSFileTransferWrapper {
      * @param error the error coming from the plugin
      * @returns The error with the properties that OutSystems expects
      */
-    private convertError(error: FileTransferError): FileTransferError & { http_status?: number } {
-        return {
-            ...error,
-            http_status: error.httpStatus,
-        };
+    private convertError(error: any): FileTransferError & { http_status?: number } {
+        if (error.data) {
+            // for Capacitor - when there is extra data, it is returned in a separate data attribute
+            return {
+                ...error.data,
+                http_status: error.data.httpStatus,
+            };
+        } else {
+            // for Cordova
+            return {
+                ...error,
+                http_status: error.httpStatus,
+            };
+        }
     }
     
     private isPWA(): boolean {

@@ -278,10 +278,17 @@
      * @returns The error with the properties that OutSystems expects
      */
     convertError(error) {
-      return {
-        ...error,
-        http_status: error.httpStatus
-      };
+      if (error.data) {
+        return {
+          ...error.data,
+          http_status: error.data.httpStatus
+        };
+      } else {
+        return {
+          ...error,
+          http_status: error.httpStatus
+        };
+      }
     }
     isPWA() {
       if (this.isSynapseDefined()) {
