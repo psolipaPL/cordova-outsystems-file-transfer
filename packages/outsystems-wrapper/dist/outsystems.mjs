@@ -16,7 +16,7 @@ class FileTransferErrorClass {
 const FileTransferError = {
   UPLOAD: new FileTransferErrorClass(10, "HTTP error when uploading."),
   DOWNLOAD: new FileTransferErrorClass(10, "HTTP error when downloading."),
-  INVALID_URL: new FileTransferErrorClass(5, "Invalid server URL."),
+  INVALID_URL: new FileTransferErrorClass(5, "URL to connect to is either null or empty."),
   CONNECTION_ERR: new FileTransferErrorClass(8, "Failed to connect to server.")
 };
 async function onError(error, request, source, target) {
