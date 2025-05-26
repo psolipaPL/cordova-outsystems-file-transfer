@@ -6,6 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0]
 
-### UNRELEASED
+### 2025-05-26
 
-- Feat: Implement plugin methods: `downloadFile`, `uploadFile`, `addListener`, `removeAllListeners`
+- Feat: Implement plugin methods: `downloadFile`, `uploadFile`, `addListener`, `removeAllListeners`.
