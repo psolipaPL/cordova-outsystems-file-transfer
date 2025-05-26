@@ -40,16 +40,14 @@
         <source-file src="packages/cordova-plugin/ios/OSFileTransferError.swift" />
         <source-file src="packages/cordova-plugin/ios/OSFileTransferPlugin.swift" />
 
-        <!-- TODO: Uncomment this when the framework is available in Cocoapods -->
-        <!-- <podspec>
+        <podspec>
             <config>
                 <source url="https://cdn.cocoapods.org/"/>
             </config>
             <pods use-frameworks="true">
                 <pod name="IONFileTransferLib" spec="1.0.0" />
             </pods>
-        </podspec> -->
-        <framework src="packages/cordova-plugin/ios/IONFileTransferLib.xcframework" custom="true" embed="true" />
+        </podspec>
     
     </platform>
 </plugin>
